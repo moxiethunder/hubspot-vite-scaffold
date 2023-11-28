@@ -1,0 +1,17 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Default Drag and Drop Page
+  screenshotPath: ../images/template-previews/moxie-2023-theme-preview.png
+-->
+{% set current_template = "template-page" %}
+
+{% extends "./layouts/base.html" %}
+
+
+{% block body %}
+
+{% dnd_area "dnd_area" %}
+{% end_dnd_area %}
+
+{% endblock body %}

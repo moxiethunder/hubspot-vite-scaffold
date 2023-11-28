@@ -1,0 +1,113 @@
+<!--
+  templateType: blog_post
+  isAvailableForNewContent: true
+  label: Thirst Trap - blog post
+  screenshotPath: ../images/template-previews/blog-post.png
+  hiddenModules:
+  - ../modules/blog-project
+-->
+{% set current_template = "template-blog-post" %}
+
+  {% module "video" path="@hubspot/video", label="Video", export_to_template_context=True %}
+  {% extends "./layouts/base.html" %}
+  {% import "/mx-2023/macros.html" as macros %}
+  
+  {% block body %}
+  
+  <div class="blog-post">
+  
+    <div class="container-fluid">
+      <div class="row row-hero">
+        <div class="col-12 col-lg-2 col-tags">
+          {{ macros.article_tags(content, 'gray') }}
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 col-image">
+          {% if content.featured_image %}
+            <div class="image-holder" data-mx-shader>
+              {% if content.featured_image_alt_text%}
+                <img class="img-fluid blog-post__featured-image" src="{{ content.featured_image }}" alt="{{ content.featured_image_alt_text }}">
+                {% else %}          
+                <img class="img-fluid blog-post__featured-image" src="{{ content.featured_image }}" alt="{{ page_meta.name }}">  
+              {% endif %}        
+            </div>
+          {% endif %}
+        </div>
+        <div class="col-12 col-md-6 col-content">
+        
+          <h1 class="header">{{ content.name }}</h1>
+        
+          <div class="meta">
+            {{ macros.article_meta_block(content) }}
+            <div class="meta-block">
+              <div class="meta-header">
+                Share
+              </div>
+              <div class="social-shares">
+                <button class="btn btn-outline btn-blue btn-small btn-hover-scale st-custom-button" href="" data-network="email">Email</button>
+                <button class="btn btn-outline btn-blue btn-small btn-hover-scale st-custom-button" href="" data-network="linkedin">LinkedIn</button>
+                <button class="btn btn-outline btn-blue btn-small btn-hover-scale st-custom-button" href="" data-network="facebook">Facebook</button>
+                <button class="btn btn-outline btn-blue btn-small btn-hover-scale st-custom-button " href="" data-network="twitter">Twitter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- .row-hero -->
+      <div class="row row-content">
+        <div class="col-12 blog-post__body">
+          {{ content.post_body }}
+        </div>
+        <div class="col-12 col-md-8 offset-md-4 blog-share">
+  
+          <button class="btn btn-share-popup btn-outline btn-blue btn-large has-icon" data-bs-toggle="modal" data-bs-target="#shareModal">Share This Article<span class="icon icon-plus"></span></button>
+          <div class="modal modal-share fade" id="shareModal" tabindex="-1" aria-label="Share this article" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close Share Modal"></button>
+                <h2>Share</h2>
+                <div class="social-shares">
+                  <button class="btn btn-outline btn-clear btn-small btn-hover-scale st-custom-button" href="" data-network="email">Email</button>
+                  <button class="btn btn-outline btn-clear btn-small btn-hover-scale st-custom-button" href="" data-network="linkedin">LinkedIn</button>
+                  <button class="btn btn-outline btn-clear btn-small btn-hover-scale st-custom-button" href="" data-network="facebook">Facebook</button>
+                  <button class="btn btn-outline btn-clear btn-small btn-hover-scale st-custom-button" href="" data-network="twitter">Twitter</button>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+        <div class="col-12 col-md-8 col-lg-6 col-xxl-4 offset-md-2 offset-xxl-4">
+          {% module "blog-signup-form" path="../modules/blog-signup-form" %}
+        </div>
+      </div><!-- .row-content -->
+    </div><!-- .blog-post -->
+    <div class="container-fluid related-articles">
+      <div class="row row-header">
+        <div class="col-12 col-lg-6">
+          <h2 class="display-2">Related Traps</h2>
+        </div>
+        <div class="col-8 offset-lg-2 offset-xl-0 col-sm-8 col-md-6 col-lg-4 col-content">
+          <a href="/thirst-traps" class="btn btn-outline btn-blue has-icon">All Articles<span class="icon icon-dot"></span></a> 
+        </div>
+      </div><!-- .row-header -->
+      <div class="row row-swiper">
+          <div class="col">
+              <div class="swiper">
+                  <div class="swiper-wrapper">
+                      {% macro related_articles(content, count, total) %}
+  
+                      <div class="swiper-slide">
+                        {{ macros.card_content_focus(content) }}
+                      </div>
+                      
+                      {% endmacro %}
+                      {% related_blog_posts limit=4, no_wrapper=True, post_formatter="related_articles" %}
+  
+                </div>
+            </div>
+        </div>
+    
+    </div><!-- .row-swiper -->
+  </div><!-- .related-articles -->
+  
+  {% endblock body %}
+  
