@@ -1,0 +1,28 @@
+# Example setup for the hubspot.config.yml file that includes development and production portals
+
+defaultPortal: DEVELOPMENT
+portals:
+  - name: DEVELOPMENT
+    portalId: {sandbox account id}
+    authType: personalaccesskey
+    auth:
+      tokenInfo:
+        accessToken: >-
+          {sandbox account access token}
+        expiresAt: '2023-11-16T21:26:19.470Z'
+    personalAccessKey: >-
+      {sandbox account personal access key}
+    sandboxAccountType: null
+    parentAccountId: null
+  - name: PRODUCTION
+    portalId: {development account id}
+    authType: personalaccesskey
+    auth:
+      tokenInfo:
+        accessToken: >-
+          {development account access token}
+        expiresAt: '2023-10-19T14:54:55.529Z'
+    personalAccessKey: >-
+      {development account personal access key}
+    sandboxAccountType: null
+    parentAccountId: null

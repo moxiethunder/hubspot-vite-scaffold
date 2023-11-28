@@ -1,0 +1,30 @@
+{
+  "name": "vite-hs-theme",
+  "version": "1.0.0",
+  "description": "A HubSpot project using Vite",
+  "main": "index.js",
+  "repository": "https://github.com/moxiethunder/hubspot-vite-scaffold.git",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "watch": "node ../utils/watch-concurrently.js"
+  },
+  "author": "Daniel LittleThunder",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1",
+    "lil-gui": "^0.19.1",
+    "sass": "^1.69.5",
+    "vite": "^5.0.2"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@studio-freight/lenis": "^1.0.28",
+    "bootstrap": "^5.3.2",
+    "gsap": "^3.12.2",
+    "swiper": "^11.0.5",
+    "three": "^0.158.0"
+  }
+}

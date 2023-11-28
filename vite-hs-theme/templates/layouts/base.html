@@ -1,0 +1,46 @@
+<!--
+  templateType: none
+-->
+
+{% import "/mx-2023/macros.html" as macros %}
+
+<!DOCTYPE html>
+<html lang="{{ html_lang }}" {{ html_lang_dir }}>
+  <head>
+    <meta charset="utf-8" />
+    {% if page_meta.html_title || pageTitle %}
+    <title>{{ page_meta.html_title || pageTitle }}</title>
+    {% endif %} {% if site_settings.favicon_src %}
+    <link rel="shortcut icon" href="{{ site_settings.favicon_src }}" />
+    {% endif %}
+    <meta name="description" content="{{ page_meta.meta_description }}" />
+    {{ require_css(get_asset_url("../../dist/styles/styles.css")) }}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      type="text/javascript"
+      src="https://platform-api.sharethis.com/js/sharethis.js#property=5d5eb348c60153001277c55d&product=sop"
+      async="async"
+    ></script>
+    {{ standard_header_includes }}
+    <script src="https://cdn.jsdelivr.net/npm/three/build/three.min.js"></script>
+  </head>
+  <body>
+    <div class="body-wrapper {{ builtin_body_classes }} {{ current_template }}">
+      {% block header %} {% module "header-menu"
+      path="../../modules/main-header" %} {% endblock header %}
+      <main id="main-content" class="body-container-wrapper">
+        {% block body %} {% endblock body %}
+      </main>
+      {% block footer %} {% module "footer-menu"
+      path="../../modules/main-footer" %} {% endblock footer %}
+    </div>
+    {{ require_js(get_asset_url("../../dist/scripts/index.js")) }} {{
+    standard_footer_includes }}
+    <div data-scroll-rig></div>
+  </body>
+</html>
